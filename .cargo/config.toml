@@ -1,0 +1,16 @@
+# using modern GCC works (GCC 11.3.0)
+[build]
+rustflags = ["-C", "link-arg=-fuse-ld=mold"]
+
+# using clang & mold via `linker` config errors regardless of RUSTFLAGS setting
+# [target.x86_64-unknown-linux-gnu]
+# linker = "clang"
+# rustflags = ["-C", "link-arg=-fuse-ld=/usr/local/bin/mold"]
+
+# using clang & mold in `rustflags` errors unless RUSTFLAGS="-L /lib/x86_64-linux-gnu/" is set manually
+# [build]
+# rustflags = ["-C", "linker=clang", "-C", "link-arg=-fuse-ld=/usr/local/bin/mold"]
+
+# using clang on its own also errors unless RUSTFLAGS is set manually
+# [build]
+# rustflags = ["-C", "linker=clang"]
